@@ -1,124 +1,87 @@
+
 const temp = document.getElementById("limit");
 
-$( document ).ready(function() {
-  var userinput=0;
-  var count=0;
-  var total =0;
-  var i=1;
-  document.querySelector('#btn').style.display = 'none'; 
-  document.querySelector('#clr').style.display = 'none'; 
-  document.querySelector('#btncount').addEventListener('click',showBtn);
- 
-  function showBtn(e) { 
-  document.querySelector('#btn').style.display = 'block'; 
-  document.querySelector('#clr').style.display = 'block'; 
-  e.preventDefault(); 
-  } 
+$(document).ready(function () {
+  var userinput = 0;
+  var count = 1;
+  function getJoke() {
 
-  $('#btncount').click(function (){
-    debugger;
-   userinput= $('#txtcount').val();
-   total=userinput;
-   temp.innerHTML = "<h4 style='dispaly:flex;margin-right: 30px;'>"+'Your Joke Count : '+total+"</h4>"
-   if(userinput>0)
-   {
-   document.getElementById('btncount').style.visibility= 'hidden';
-   //console.count(userinput);
-   document.getElementById('txtcount').style.visibility= 'hidden';
-   $('#btncount').prop('disabled', true);
-   //console.count(userinput);
-   alert("Count Submitted Successfully...Press 👉Joke")
-   }
-   else
-   {
-    alert("Please enter the value");
-   }
-   count=0;
-   console.log(count);
-   $.ajax({
+    console.log("beforeinput" + count);
 
-    type: 'GET',
-
-    url: 'https://dad-jokes.p.rapidapi.com/random/joke',
-
-    dataType: 'json',
-
-    headers: {
-
-                       'content-type': "application/json",
-
-                       'X-RapidAPI-Key': '9bb608e8a4mshd8a19dfff003accp1a9b22jsna8ff0ad0958c',
-
-                       'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
-
-                    },
-
-    success: function (data)
-
-    {
-      $('#joke1').html(i+". "+data.body[0].setup);
-
-      console.log(data.body[0].setup);
-
-      $('#joke2').html(data.body[0].punchline);
-
-      console.log(data.body[0].punchline);
-    i++;
-    }
-
-  });
-
- });
-
-  $('#btn').click(function(){
-    debugger;
-    count=count+1;
-
-     if(count=userinput){
+    if (count == userinput) {
 
       $('#btn').prop('disabled', true);
-
-      document.getElementById('btn').style.visibility= 'hidden';
+      document.getElementById('btn').style.visibility = 'hidden';
     }
-      
-   console.log(count);
-   
+
+    console.log("afterinput" + count);
+
     $.ajax({
 
-    type: 'GET',
+      type: 'GET',
 
-    url: 'https://dad-jokes.p.rapidapi.com/random/joke',
+      url: 'https://dad-jokes.p.rapidapi.com/random/joke',
 
-    dataType: 'json',
+      dataType: 'json',
 
-    headers: {
+      headers: {
 
-                       'content-type': "application/json",
+        'content-type': "application/json",
 
-                       'X-RapidAPI-Key': '9bb608e8a4mshd8a19dfff003accp1a9b22jsna8ff0ad0958c',
+        'X-RapidAPI-Key': '9bb608e8a4mshd8a19dfff003accp1a9b22jsna8ff0ad0958c',
 
-                       'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
+        'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
 
-                    },
+      },
 
-    success: function (data)
+      success: function (data) {
+        console.log("insuccess" + count);
+        count = count + 0;
+        $('#joke1').html(count + ". " + data.body[0].setup);
 
-    {
-      $('#joke1').html(i+". "+data.body[0].setup);
+        console.log(data.body[0].setup);
 
-      console.log(data.body[0].setup);
+        $('#joke2').html(data.body[0].punchline);
 
-      $('#joke2').html(data.body[0].punchline);
+        console.log(data.body[0].punchline);
 
-      console.log(data.body[0].punchline);
-    i++;
+        console.log("inbuttonclick" + count)
+        count++;
+      }
+
+    });
+  }
+
+ 
+  console.log("firstcountvalue" + count)
+  document.querySelector('#btn').style.display = 'none';
+
+  document.querySelector('#clr').style.display = 'none';
+
+  document.querySelector('#btncount').addEventListener('click', showBtn);
+
+  function showBtn(e) {
+    document.querySelector('#btn').style.display = 'block';
+    document.querySelector('#clr').style.display = 'block';
+    e.preventDefault();
+  }
+  $('#btncount').click(function () {
+    userinput = $('#txtcount').val();
+    temp.innerHTML = "<h4 style='dispaly:flex;margin-right: 30px;'>" + 'Your Joke Count : ' + userinput + "</h4>"
+    if (userinput > 0) {
+      document.getElementById('btncount').style.display = "none";
+      document.getElementById('txtcount').style.display = "none";
     }
 
+    $('#btncount').prop('disabled', true);
+    console.log(count);
+    getJoke();
   });
 
-});
+  $('#btn').click(function () {
 
+    getJoke();
+  });
 });
-
 
 
