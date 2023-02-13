@@ -20,16 +20,15 @@
             <br>
             <div align="center" id="joke2" class="joke2"></div> 
         </div>
-
         <div class="row mt-1">
             <div class="col-md-3 offset-md-3">
                 <div class="form-group" align="center">
-                    <input placeholder="  Joke Count " title=" click here to Enter joke count" class="btn" type="number" max="50" onkeypress="if (this.value.length > 1 ) return false;" id= "txtcount"/>
+                    <input placeholder="  Joke Count " title=" Please Enter Value" class="btn"  type="number" min="0" value="" max="50" onkeypress="if (this.value.length > 1 ) return false;"  id= "txtcount"/><br><br>
+                   
 
                     <button class="btn" type="button" id="btncount" onclick ="validate()">Submit</button>
                     <br>
                     <br>
-
                     <button class="btn" title=" click here to get joke" type="button"  value= Next😁Joke  id= "btn" onclick="hidden()">Joke😂</button>
                     <br>
                     <br>
@@ -38,7 +37,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <script>
         function locationreload() {
