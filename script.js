@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     console.log("beforeinput" + count);
 
-    if (count == userinput) 
+    if (count == userinput)
     {
 
       $('#btn').prop('disabled', true);
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
         'content-type': "application/json",
 
-        'X-RapidAPI-Key': '9bb608e8a4mshd8a19dfff003accp1a9b22jsna8ff0ad0958c',
+        'X-RapidAPI-Key': '69f5629098msh2937e5cf4b4a80ep1f6681jsn8d964b518220',
 
         'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
 
@@ -67,20 +67,21 @@ $(document).ready(function () {
   }
   $('#btncount').click(function () {
     userinput = $('#txtcount').val();
-    temp.innerHTML = "<h4 style='dispaly:flex;margin-right: 30px;'>" + 'Your Joke Count : ' + userinput + "</h4>"
     if (userinput > 0) {
+      alert("Count Successfully Submitted");
+      temp.innerHTML = "<h4 style='dispaly:flex;margin-right: 30px;'>" + 'Your Joke Count : ' + userinput + "</h4>"
       console.log(userinput);
       getJoke();
       document.getElementById('btncount').style.display = "none";
       document.getElementById('txtcount').style.display = "none";
     }
     else{
-       alert("Please Do Enter Value");
+       alert("Please Enter value");
        document.getElementById('btn').style.display = "none";
        document.getElementById('clr').style.display = "none";
     }
     console.log(count);
-    
+   
   });
 
   $('#btn').click(function () {
